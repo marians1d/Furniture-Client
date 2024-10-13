@@ -1,0 +1,66 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+        <div class="container">
+            <a class="navbar-brand text-warning" routerLink="/">Dream Style</a>
+
+            <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+                &#9776;
+            </button>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/" (click)="isMenuCollapsed = true">Home</a>
+                    </li>
+
+                    @if (isLogged) {
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/orders/new" (click)="isMenuCollapsed = true">New Order</a>
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a class="nav-link me-5" routerLink="/orders" (click)="isMenuCollapsed = true">Orders</a>
+                    </li>
+
+
+                    <!-- <li class="nav-item">
+                        <a class="nav-link me-5" routerLink="/about" (click)="isMenuCollapsed = true">About</a>
+                    </li> -->
+
+                    <li class="nav-item ">
+                        <div class="col">
+                            <div class="d-inline-block">
+                                <!--
+                                @if (!isLogged) {
+                                  <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>
+                                    Login
+                                  </button>
+                                } @else {
+                                  <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>
+                                    Profile
+                                  </button>
+                                }
+                                -->
+                                <div class="dropdown-menu-end" aria-labelledby="dropdownBasic1">
+                                    @if (!isLogged) {
+                                        <button class="btn btn-primary me-2" routerLink="/login">Login</button>
+                                        <button class="btn btn-primary" routerLink="/register">Register</button>
+                                    }
+
+                                    @if (isLogged) {
+                                        <span class="dropdown-item-text">Hello, {{ currentUser!.username }}</span>
+                                        <button routerLink="/users/profile">My Profile</button>
+                                        <hr class="dropdown-divider">
+                                        <button (click)="logout()">Logout</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
